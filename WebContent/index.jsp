@@ -12,7 +12,7 @@ body {
 	height:100%;
 	width:100%;
 	margin: 0;
-	background-color:gray;
+	background-color:#383838;
 	font-family:Microsoft JhengHei;
 }
 header{
@@ -71,10 +71,6 @@ header{
 	margin:2px;
 }
 .btn:hover{
-	border:#a52603 2px solid;
-	border-radius: 5px;
-	padding:3px;
-	font-size:15px;
 	background-color:#fcf3e9;
 	color:#a52603;
 }

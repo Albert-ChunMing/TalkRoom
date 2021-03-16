@@ -63,8 +63,8 @@ span, #msg{font-size:20px;color:red;}
 		<tr><td>姓名</td><td>${userInfo.username}</td><td><input type="text" id="name" name="name"><br><span id="error2"></span></td></tr>
 		<tr><td>生日</td><td>${userInfo.birthday}</td><td><input type="text" id="birth" name="birth"><br><span id="error3"></span></td>	</tr>
 		<tr><td>手機</td><td>${userInfo.cellphone}</td><td><input type="text" id="phone" name="phone"><br><span id="error4"></span></td></tr>		
-</table>
-<input type="hidden" name="action" value="update">
+	</table>
+	<input type="hidden" name="action" value="update">
 </form>
 <button id="update">更新</button>&nbsp;<button id="back">返回</button>
 <div id=msg>${requestScope.result}</div>
