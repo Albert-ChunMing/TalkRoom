@@ -12,7 +12,7 @@ body {
 	height:100%;
 	width:100%;
 	margin: 0;
-	background-color:#f5f5f5;
+	background-color:gray;
 	font-family:Microsoft JhengHei;
 }
 header{
@@ -30,20 +30,36 @@ header{
 	display:flex;
 	justify-content:flex-end;/*調整水平排列:內部DIV靠右對齊*/
 	align-items:flex-end;/*調整鉛直排列:內部DIV靠下對齊*/
-	padding:5px;
+	padding:10px;
 	background-color:#fcf3e9;
 	font-weight:bold;
 }
 .select{
 	text-align:center;
+	display:flex;
 }
 .talkroom{
-	padding:5px;
-	border:#f5f5f5 2px solid;
+	width:250px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	background-color:black;
+	padding:2px;
 }
 .talkroom:hover{
 	cursor:pointer;
-	border:black 2px solid;
+}
+.roomName{
+	background-color:#a52603;
+	color:#fcf3e9;
+	border-radius: 5px;
+	padding:5px;
+	margin:5px;
+	font-weight:bold;
+}
+.roomName:hover{
+	background-color:#fcf3e9;
+	color:#a52603;
 }
 .btn{
 	border:#a52603 2px solid;
@@ -61,6 +77,15 @@ header{
 	font-size:15px;
 	background-color:#fcf3e9;
 	color:#a52603;
+}
+.img{
+	width:240px;
+	height:240px;
+	border-radius: 5px;
+}
+@media screen and (max-width:1050px) {
+	.select{text-align:center;display:block;}
+
 }
 </style>
 <script src='js/jquery.js'></script>
@@ -107,9 +132,9 @@ header{
 		<input type="button" id="logout" name="logout" value="登出" class="btn">
 	</div>
 	<div class="select">
-		<div id="talkroom1"  class="talkroom">鄉民都30cm起跳</div>
-		<div id="talkroom2"  class="talkroom">地方媽媽的煩惱</div>
-		<div id="talkroom3"  class="talkroom">單身狗變黃金狗</div>
+		<div id="talkroom1"  class="talkroom"><div class="roomName">鄉民都30cm起跳</div><img src="images/netizen.gif"  alt="No images" class='img'/></div>
+		<div id="talkroom1"  class="talkroom"><div class="roomName">地方媽媽的煩惱</div><img src="https://media.giphy.com/media/LkNrdxLtU1YYxsjjJL/giphy.gif"  alt="No images" class='img'/></div>
+		<div id="talkroom1"  class="talkroom"><div class="roomName">單身狗只能吃土</div><img src="https://media.giphy.com/media/baq37DWuGSMFIljIwQ/giphy.gif"  alt="No images" class='img'/></div>
 	</div>
 
 </body>
