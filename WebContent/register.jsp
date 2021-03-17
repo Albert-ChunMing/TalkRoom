@@ -4,10 +4,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>會員註冊</title>
 <link rel="stylesheet" href='style/jquery-ui.css'>
 <style>
-span, #msg{font-size:20px;color:red;}
+body {
+	height:100%;
+	width:100%;
+	margin: 0;
+	background-color:#383838;
+	font-family:Microsoft JhengHei;
+	font-size:30px;
+	color:white;
+}
+header{
+	max-width:100%;
+	font-size:40px;
+	font-weight:bolder;
+	font-family:Microsoft JhengHei;
+	background-color:#a52603;
+	color:#fcf3e9;
+	text-align:center;
+	padding:5px;
+	border:black 3px solid;
+}
+.btn{
+	border:#a52603 2px solid;
+	border-radius: 5px;
+	padding:3px;
+	font-size:25px;
+	background-color:#a52603;
+	color:#fcf3e9;
+	margin:10px;
+}
+.btn:hover{
+	background-color:#fcf3e9;
+	color:#a52603;
+}
+#msg,span{
+	font-size:20px;
+	color:#ffe8a8;
+	vertical-align:top;
+}
+.center{
+	text-align:center;
+	margin-top:50px;
+}
+input{
+	width:200px;
+	height:33px;
+	font-size:25px;
+	margin-top:5px;
+}
 .ui-datepicker {font-size:60%;}
 </style>
 <script src='js/jquery.js'></script>
@@ -50,17 +99,17 @@ span, #msg{font-size:20px;color:red;}
 </script>
 </head>
 <body>
-<header><b>會員註冊</b></header>
-<div>
+<header>會員註冊</header>
+<div class="center">
 	<form action="RegisterAndUpdate" method="post" id="userInfo">
-		帳號: <input type="text" id="account" name="account"><span id="error1"></span><br>
-		密碼: <input type="text" id="pass" name="pass"><span id="error2"></span><br>
-		姓名: <input type="text" id="name" name="name"><span id="error3"></span><br>
-		生日: <input type="text" id="birth" name="birth"><span id="error4"></span><br>
-		手機: <input type="text" id="phone" name="phone"><span id="error5"></span><br>
+		帳號: <input type="text" id="account" name="account"><br><span id="error1"></span><br>
+		密碼: <input type="text" id="pass" name="pass"><br><span id="error2"></span><br>
+		姓名: <input type="text" id="name" name="name"><br><span id="error3"></span><br>
+		生日: <input type="text" id="birth" name="birth"><br><span id="error4"></span><br>
+		手機: <input type="text" id="phone" name="phone"><br><span id="error5"></span><br>
 		<input type="hidden" name="action" value="add">
 	</form>	
-	<button id="confirm">確認</button>&nbsp;<button id="back">返回</button>
+	<button id="confirm" class="btn">確認</button><button id="back" class="btn">返回</button>
 	<div id=msg>${requestScope.result}</div>
 </div>
 </body>

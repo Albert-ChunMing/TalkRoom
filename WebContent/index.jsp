@@ -29,7 +29,7 @@ header{
 .toRight{		
 	display:flex;
 	justify-content:flex-end;/*調整水平排列:內部DIV靠右對齊*/
-	align-items:flex-end;/*調整鉛直排列:內部DIV靠下對齊*/
+	align-items:center;
 	padding:10px;
 	background-color:#fcf3e9;
 	font-weight:bold;
@@ -37,6 +37,7 @@ header{
 .select{
 	text-align:center;
 	display:flex;
+	padding:10px;
 }
 .talkroom{
 	width:250px;
@@ -65,10 +66,10 @@ header{
 	border:#a52603 2px solid;
 	border-radius: 5px;
 	padding:3px;
-	font-size:15px;
+	font-size:20px;
 	background-color:#a52603;
 	color:#fcf3e9;
-	margin:2px;
+	margin:5px;
 }
 .btn:hover{
 	background-color:#fcf3e9;

@@ -32,39 +32,39 @@ header{
 	border:#a52603 2px solid;
 	border-radius: 5px;
 	padding:3px;
-	font-size:20px;
+	font-size:25px;
 	background-color:#a52603;
 	color:#fcf3e9;
-	margin:5px;
+	margin:10px;
 }
 .btn:hover{
 	background-color:#fcf3e9;
 	color:#a52603;
 }
-#msg{
+#msg,span{
 	font-size:20px;
-	color:red;
+	color:#ffe8a8;
+	vertical-align:top;
 }
 .center{
 	text-align:center;
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-72.5px;
-	margin-left:-150px;
+	margin-top:50px;
 }
 #account ,#password{
 	width:200px;
 	height:33px;
 	font-size:25px;
-	margin:5px;
+	margin-top:5px;
 }
 </style>
 <script src='js/jquery.js'></script>
 <script>
 	function checkForm(){
 		if(!$("#account").val() || !$("#password").val()){
-			$("#msg").text("尚有欄位未填寫");
+			var error1=$("#account").val()? "":"請輸入帳號";
+			var error2=$("#password").val()? "":"請輸入密碼";
+			$("#error1").text(error1);
+			$("#error2").text(error2);
 			return false;
 		}
 	}
@@ -79,8 +79,8 @@ header{
 <header>會員登入</header>
 	<div class="center">
 		<form action="LoginAndLogout" method="post" onsubmit="return checkForm()">
-			帳號 : <input type="text" name="account" id="account"><br>
-			密碼 : <input type="password" name="password" id="password"><br>
+			帳號 : <input type="text" name="account" id="account"><br><span id="error1"></span><br>
+			密碼 : <input type="password" name="password" id="password"><br><span id="error2"></span><br>
 			<input type="hidden" name="action" value="login">
 			<input type="submit" id="login" value="登入" class="btn"><button id="back" class="btn">返回</button>
 		</form>
