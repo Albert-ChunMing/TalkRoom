@@ -65,16 +65,20 @@ input{
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#confirm").click(function(){
-			if(!$("#account").val().trim() || !$("#pass").val().trim() || !$("#name").val().trim() || !$("#birth").val().trim() || !$("#phone").val().trim() ||
-				$("#account").val().length !==$("#account").val().trim().length ||	$("#pass").val().length !==$("#pass").val().trim().length ||	$("#name").val().length !==$("#name").val().trim().length ||	$("#birth").val().length !==$("#birth").val().trim().length || $("#phone").val().length !==$("#phone").val().trim().length){
-				$("#error1").text($("#account").val().trim()? $("#account").val().length==$("#account").val().trim().length? $("#account").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入帳號");
-				$("#error2").text($("#pass").val().trim()? $("#pass").val().length==$("#pass").val().trim().length? $("#pass").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入密碼");
-				$("#error3").text($("#name").val().trim()? $("#name").val().length==$("#name").val().trim().length? $("#name").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入姓名");
-				$("#error4").text($("#birth").val().trim()? $("#birth").val().length==$("#birth").val().trim().length? "":"前後不能有空格":"請輸入生日");
-				$("#error5").text($("#phone").val().trim()? $("#phone").val().length==$("#phone").val().trim().length? $("#phone").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入手機");	
-				return false;
-			}
-			$("#userInfo").submit();
+			if(!$("#account").val().trim() || $("#account").val().length !==$("#account").val().trim().length || $("#account").val().trim().length>20
+					|| !$("#pass").val().trim() || $("#pass").val().length !==$("#pass").val().trim().length || $("#pass").val().trim().length>20 || $("#pass").val().trim().length<8
+					|| !$("#name").val().trim() || $("#name").val().length !==$("#name").val().trim().length || $("#name").val().trim().length>20
+					|| !$("#birth").val().trim() || $("#birth").val().length !==$("#birth").val().trim().length || $("#birth").val().trim().length>20
+					|| !$("#phone").val().trim() || $("#phone").val().length !==$("#phone").val().trim().length || $("#phone").val().trim().length>20)
+					{
+						$("#error1").text($("#account").val().trim()? $("#account").val().length==$("#account").val().trim().length? $("#account").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入帳號");
+						$("#error2").text($("#pass").val().trim()? $("#pass").val().length==$("#pass").val().trim().length? $("#pass").val().trim().length<21? $("#pass").val().trim().length>7? "":"請輸入8碼以上":"須20字以內":"前後不能有空格":"請輸入密碼");
+						$("#error3").text($("#name").val().trim()? $("#name").val().length==$("#name").val().trim().length? $("#name").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入姓名");
+						$("#error4").text($("#birth").val().trim()? $("#birth").val().length==$("#birth").val().trim().length? $("#birth").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入生日");
+						$("#error5").text($("#phone").val().trim()? $("#phone").val().length==$("#phone").val().trim().length? $("#phone").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入手機");	
+						return false;
+					}
+					$("#userInfo").submit();
 		});
 		
 		$("#back").click(function(){
