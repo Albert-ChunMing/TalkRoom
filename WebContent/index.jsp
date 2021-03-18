@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="model.UserInfo"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,17 +37,17 @@ header{
 	font-weight:bold;
 }
 .select{
-	text-align:center;
-	display:flex;
-	padding:10px;
+	padding:20px;
 }
 .talkroom{
 	width:250px;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left:20px;
+	margin-right:20px;
 	margin-top:10px;
 	background-color:black;
 	padding:2px;
+	display: inline-block;
+    text-align: center;
 }
 .talkroom:hover{
 	cursor:pointer;
@@ -80,6 +82,7 @@ header{
 	height:240px;
 	border-radius: 5px;
 }
+a{text-decoration: none}
 @media screen and (max-width:1050px) {
 	.select{text-align:center;display:block;}
 
@@ -103,11 +106,7 @@ header{
 		$("#logout").click(function(){
 			window.location.href="LoginAndLogout?action=logout";
 		});		
-		
-		$("#talkroom1").click(function(){
-			window.location.href="talkroom.jsp";
-		});
-		
+				
 		if($("#welcome").html()){
 			$("#welcome").append(" 您好 ");
 			$("#login").hide();
@@ -128,10 +127,18 @@ header{
 		<input type="button" id="update" value="修改個資" class="btn">
 		<input type="button" id="logout" name="logout" value="登出" class="btn">
 	</div>
+	<sql:setDataSource driver="com.mysql.cj.jdbc.Driver" 
+		url="jdbc:mysql://localhost:3306/talkroom?useUnicode=true&characterEncoding=utf-8&serverTimezone=CST"
+		user="root"
+		password="1234"
+		var="talkroom"/>
+	<sql:query var="roomset" dataSource="${talkroom}">
+		SELECT * FROM talkroom.roomset;
+	</sql:query>
 	<div class="select">
-		<div id="talkroom1"  class="talkroom"><div class="roomName">鄉民都30cm起跳</div><img src="images/netizen.gif"  alt="No images" class='img'/></div>
-		<div id="talkroom1"  class="talkroom"><div class="roomName">地方媽媽的煩惱</div><img src="https://media.giphy.com/media/LkNrdxLtU1YYxsjjJL/giphy.gif"  alt="No images" class='img'/></div>
-		<div id="talkroom1"  class="talkroom"><div class="roomName">單身狗只能吃土</div><img src="https://media.giphy.com/media/baq37DWuGSMFIljIwQ/giphy.gif"  alt="No images" class='img'/></div>
+		<c:forEach var="row" items="${roomset.rows}">
+			<div class="talkroom"><a href="${row.destination}"><div class="roomName">${row.roomname}</div><img src="${row.imageURL}"  alt="No images" class='img'/></a></div>
+		</c:forEach>		
 	</div>
 
 </body>
