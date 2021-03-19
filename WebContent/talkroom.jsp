@@ -200,7 +200,7 @@ header{
 		<div id="input" contenteditable="true" ></div>
 		<div class="div2">		
 			<div style="width:350px">目前狀態 :&nbsp;<span id="info"></span></div>
-			<div style="width:350px">線上人數 :&nbsp;<span id="number"></span></div>
+			<div style="width:350px">線上人數 :&nbsp;<span id="number"></span>&nbsp;<input type="button" value="誰在線上?" id="who"/></div>
 			<div><input type="hidden" id="name" value="${userInfo.username}"/><input type="button" value="離開聊天室"	id="logout" class="btn" /></div>
 		</div> 		
 	</footer>
@@ -219,7 +219,8 @@ header{
 		var bottom=document.getElementById("bottom");
 		var number=document.getElementById("number");
 		var webSocket;
-	    var isConnect = false;	    
+	    var isConnect = false;
+	    var usernames=[];	    
 	    
 		
  	    	
@@ -237,7 +238,7 @@ header{
 						logout.disabled=false;
 						info.innerHTML="<b>進入聊天室</b>";
 						//傳送登入成功的資訊給聊天室
-						var loginInfo={username:"系統", message:name.value+ " 進入了聊天室"};
+						var loginInfo={username:"系統", message:name.value+ " 進入聊天室"};
 						webSocket.send(JSON.stringify(loginInfo));						
 	 		    	}
 
@@ -277,6 +278,23 @@ header{
 							//訊息來自系統時
 							}else if(obj.username==="系統"){
 								messages.innerHTML+="<div class='center'><b>"+obj.message+"</b></div>";
+								/*
+								以下為顯示線上使用者有誰  但功能有缺陷  只能顯示登入之後才出現的使用者 
+								var length=obj.message.length;
+								if(obj.message.substring(length-5,length)==="進入聊天室"){
+									usernames.push(obj.message.substring(0,length-6));
+								}
+								if(obj.message.substring(length-5,length)==="離開聊天室"){
+									usernames.forEach(function(item, index, array) {//item代表元素 index代表元素位置 array代表usernames這個陣列
+										if(item===obj.message.substring(0,length-6)){
+											array.splice(index,1);//index表示要刪除的起始位置 1表示刪除1個元素
+										}
+									})
+								}
+								usernames.forEach(function(elt, i, array) {
+									console.log(elt);
+								})
+								*/
 							//訊息來自別人時
 							}else{    
 								//訊息為圖片時
@@ -342,7 +360,7 @@ header{
 				  	var length=input.innerHTML.length;
 				  	//連續換行時只跳一行		  	
 					input.innerHTML=input.innerHTML.substring(length-8, length)=="<br><br>"?  input.innerHTML+"<br>":input.innerHTML+"<br><br>";
-					if (window.getSelection) {//ie11 10 9 ff safari
+					if (window.getSelection) {//表示用戶選擇的文本範圍或光標的當前位置  ie11 10 9 ff(fire fox) safari
 		                input.focus(); //把游標移動到input物件  解決ff不獲取焦點無法定位問題
 		                var range = window.getSelection();//建立range
 		                range.selectAllChildren(input);//range 選擇input物件下所有子內容
@@ -381,6 +399,11 @@ header{
 				info.innerHTML="<b>連線中斷</b>";				
 			}			
 		})	;
+
+		//顯示目前聊天室內的使用者
+		$("#who").click(function(){
+			alert("A");
+		});
 		
 	}
 	
