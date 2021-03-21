@@ -70,7 +70,10 @@ header{
 	}
 	$(document).ready(function(){
 		$("#back").click(function(){
-			window.location.href="index.jsp";
+			window.history.back();
+		});
+		$("#register").click(function(){
+			window.location.href="register.jsp";
 		});
 	});	
 </script>
@@ -82,7 +85,7 @@ header{
 			帳號 : <input type="text" name="account" id="account"><br><span id="error1"></span><br>
 			密碼 : <input type="password" name="password" id="password"><br><span id="error2"></span><br>
 			<input type="hidden" name="action" value="login">
-			<input type="submit" id="login" value="登入" class="btn"><button id="back" class="btn">返回</button>
+			<input type="submit" id="login" value="登入" class="btn"><button id="register" class="btn">註冊</button><button id="back" class="btn">返回</button>
 		</form>
 		<div id=msg>${requestScope.loginStatus}</div>
 	</div>

@@ -108,7 +108,6 @@ header{
 .div2{	
 	display:flex;
 	align-items:center;
-	align-content:center;
 	justify-content:space-between;/*分散對齊*/
 	margin-top:3px;
 	color:#a52603;
@@ -129,12 +128,9 @@ header{
 	color:#fcf3e9;
 }
 .btn:hover{
-	border:#a52603 2px solid;
-	border-radius: 5px;
-	padding:3px;
-	font-size:15px;
 	background-color:#fcf3e9;
 	color:#a52603;
+	cursor:pointer;
 }
 .userName{
 	font-weight:bold;
@@ -155,21 +151,30 @@ header{
   width:100%;
   height:auto;
 }
-#name{
-	border:#a52603 2px solid;
-	font-size:15px; 
-	width:165px;
+.robot{
+	font-size:15px;
+	background-color:#0068d2;
+    color: white;
+    border:#0068d2 2px solid;
+	border-radius: 5px;
+	padding:3px;
+}
+#robot{
+	height:20px;
+	width:20px;
 }
 @media screen and (max-width:1050px) {
 	/*當使用者使用螢幕 且螢幕寬度不超過1050px時 套用大括號內的CSS設定*/
 	.wrapper {min-height: 100%;	width:100%;max-width:100%;margin-bottom: -157px;}
 	.content {padding-bottom: 157px;	line-height:1.2;font-size: 16px;}
 	.footer {height: 145px;background-color:#fcf3e9;border:#a52603 3px solid;padding:3px;	}
-	#input{height:20px;max-height:20px;overflow-y:auto;
-				margin-left:auto;margin-right:auto;margin-top:5px;border:#a52603 2px solid;background-color:white;}
-	.div2{	width:100%;	display:block;font-size: 15px;color:#a52603;}
+	#input{height:20px;max-height:20px;font-size: 18px;}
+	.div2{	width:100%;	display:block;font-size: 15px;}
 	.img{width:20px;height:20px;}
 	.userName{font-weight:bold;max-width:120px;word-wrap:break-word;margin-right:5px;color:white;}
+	.btn{padding:2px;font-size:13px;}
+	.robot{font-size:13px;}
+	#robot{	height:18px;width:18px;}
 }
 </style>
 <script src='js/jquery.js'></script>
@@ -190,17 +195,18 @@ header{
 			<img src="images/laughing.png"  alt="No images" class='img'/>&nbsp;
 			<img src="images/shocked.png"  alt="No images" class='img'/>&nbsp;
 			<img src="images/sad.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/angry.png"  alt="No images" class='img'/>&nbsp;&nbsp;&nbsp;
+			<img src="images/angry.png"  alt="No images" class='img'/>&nbsp;&nbsp;
 			<label class="btn">
 				<input type="file" id="file" accept="image/*" style="display:none;"/>
-				<i class="fa fa-photo"></i> 上傳圖片<!-- 文字 "上傳圖片" 左邊的 HTML 碼是 Font Awesome 對應的圖示  要先引用CDN 連結-->
+				<i class="fa fa-photo"></i> 傳圖<!-- 文字 "傳圖" 左邊的 HTML 碼是 Font Awesome 對應的圖示  要先引用CDN 連結-->
 			</label>&nbsp;
-			<input type="button" value="送出" id="send" class="btn"/><br>
+			<input type="button" value="送出" id="send" class="btn"/>&nbsp;
+			<input type="checkbox" id="robot"><label for="robot" class="robot">對話機器人</label>
 		</div>
 		<div id="input" contenteditable="true" ></div>
 		<div class="div2">		
 			<div style="width:350px">目前狀態 :&nbsp;<span id="info"></span></div>
-			<div style="width:350px">線上人數 :&nbsp;<span id="number"></span>&nbsp;<input type="button" value="誰在線上?" id="who"/></div>
+			<div style="width:350px;align-items: center;display: flex;">線上人數 :&nbsp;<span id="number"></span>&nbsp;<div class="btn" id="who">誰在線上?</div></div>
 			<div><input type="hidden" id="name" value="${userInfo.username}"/><input type="button" value="離開聊天室"	id="logout" class="btn" /></div>
 		</div> 		
 	</footer>
@@ -220,9 +226,7 @@ header{
 		var number=document.getElementById("number");
 		var webSocket;
 	    var isConnect = false;
-	    var usernames=[];	    
-	    
-		
+	    var guestnames;	    
  	    	
 	    	if(name.value&&name.value!=="系統"){//in javascript, both null values, and empty strings, equals to false
 	    		//開始連線
@@ -260,7 +264,7 @@ header{
 						var time=hour+":"+minute;
 						//傳回的資料型態為String時
 			 		    if(typeof event.data==="string"){
-			 		    	var obj=JSON.parse(event.data);//欲取得物件內容必須使用.data							
+			 		    	var obj=JSON.parse(event.data);//欲取得物件內容必須使用.data			
 							//訊息來自自己時
 							if(obj.username===name.value){
 								//訊息為圖片時
@@ -274,10 +278,21 @@ header{
 									//$("#messages").linkify();//選擇id=messages的元素
 									//$("div[class='message']").linkify();//選擇所有div中class=message的元素
 									$(".message:last").linkify();//選擇最後一個class=message的元素 其字串中有超連結時自動轉換成超連結
+									//開啟對話機器人
+									if($("#robot").prop('checked')){
+										if(obj.message.includes("鮭魚")){messages.innerHTML+="<div class='toLeft'><span class='time'>"+time+"</span><div class='userName'>"+"系統"+" :</div><div class='message';>記住!一生只能改名3次!</div></div>";}
+										if(obj.message.includes("餓")||obj.message.includes("吃")){messages.innerHTML+="<div class='toLeft'><span class='time'>"+time+"</span><div class='userName'>"+"系統"+" :</div><div class='message';>你豬嗎!?整天只想著吃吃吃~</div></div>";}
+										if(obj.message.includes("系統")){messages.innerHTML+="<div class='toLeft'><span class='time'>"+time+"</span><div class='userName'>"+"系統"+" :</div><div class='message';>叫我幹嘛?</div></div>";}
+										if(obj.message.includes("豬")){messages.innerHTML+="<div class='toLeft'><span class='time'>"+time+"</span><div class='userName'>"+"系統"+" :</div><div class='message';>不可以隨便罵人是豬</div></div>";}
+										if(obj.message.includes("天氣")){messages.innerHTML+="<div class='toLeft'><span class='time'>"+time+"</span><div class='userName'>"+"系統"+" :</div><div class='message';>中央氣象局: https://www.cwb.gov.tw/V8/C/W/week.html</div></div>";}
+										$(".message:last").linkify();
+									}
 								}
 							//訊息來自系統時
 							}else if(obj.username==="系統"){
 								messages.innerHTML+="<div class='center'><b>"+obj.message+"</b></div>";
+								number.innerHTML="<b>"+obj.guestNumbers+"</b>";
+								guestnames=obj.guestNames;
 								/*
 								以下為顯示線上使用者有誰  但功能有缺陷  只能顯示登入之後才出現的使用者 
 								var length=obj.message.length;
@@ -306,7 +321,6 @@ header{
 									$(".message:last").linkify();
 								}								
 							}						
-							number.innerHTML="<b>"+obj.number+"</b>";
 					 	}
 					 	//傳回的資料型態為ArrayBuffer
 					 	if(event.data instanceof ArrayBuffer){
@@ -402,8 +416,13 @@ header{
 
 		//顯示目前聊天室內的使用者
 		$("#who").click(function(){
-			alert("A");
+			alert("目前訪客: \n"+guestnames);
 		});
+		
+		//離開該分頁(包含按上一頁)或瀏覽器時 先離開聊天室
+		window.addEventListener('beforeunload', function(event) {
+            logout.click();
+        });
 		
 	}
 	
