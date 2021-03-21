@@ -29,7 +29,7 @@ span, #msg{font-size:20px;color:red;}
 		});
 		
 		$("#back").click(function(){
-			window.location.href="index.jsp";
+			window.history.back();
 		});
 		
 		if($("#msg").text()=="註冊成功 3秒後自動返回首頁"){
