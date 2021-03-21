@@ -4,10 +4,59 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>會員註冊</title>
 <link rel="stylesheet" href='style/jquery-ui.css'>
 <style>
-span, #msg{font-size:20px;color:red;}
+body {
+	height:100%;
+	width:100%;
+	margin: 0;
+	background-color:#383838;
+	font-family:Microsoft JhengHei;
+	font-size:30px;
+	color:white;
+}
+header{
+	max-width:100%;
+	font-size:40px;
+	font-weight:bolder;
+	font-family:Microsoft JhengHei;
+	background-color:#a52603;
+	color:#fcf3e9;
+	text-align:center;
+	padding:5px;
+	border:black 3px solid;
+}
+.btn{
+	border:#a52603 2px solid;
+	border-radius: 5px;
+	padding:3px;
+	font-size:25px;
+	background-color:#a52603;
+	color:#fcf3e9;
+	margin:10px;
+}
+.btn:hover{
+	background-color:#fcf3e9;
+	color:#a52603;
+}
+#msg,span{
+	font-size:20px;
+	color:#ffe8a8;
+	vertical-align:top;
+}
+.center{
+	text-align:center;
+	margin-top:50px;
+}
+input{
+	width:200px;
+	height:33px;
+	font-size:25px;
+	margin-top:5px;
+}
 .ui-datepicker {font-size:60%;}
 </style>
 <script src='js/jquery.js'></script>
@@ -16,16 +65,20 @@ span, #msg{font-size:20px;color:red;}
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#confirm").click(function(){
-			if(!$("#account").val().trim() || !$("#pass").val().trim() || !$("#name").val().trim() || !$("#birth").val().trim() || !$("#phone").val().trim() ||
-				$("#account").val().length !==$("#account").val().trim().length ||	$("#pass").val().length !==$("#pass").val().trim().length ||	$("#name").val().length !==$("#name").val().trim().length ||	$("#birth").val().length !==$("#birth").val().trim().length || $("#phone").val().length !==$("#phone").val().trim().length){
-				$("#error1").text($("#account").val().trim()? $("#account").val().length==$("#account").val().trim().length? $("#account").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入帳號");
-				$("#error2").text($("#pass").val().trim()? $("#pass").val().length==$("#pass").val().trim().length? $("#pass").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入密碼");
-				$("#error3").text($("#name").val().trim()? $("#name").val().length==$("#name").val().trim().length? $("#name").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入姓名");
-				$("#error4").text($("#birth").val().trim()? $("#birth").val().length==$("#birth").val().trim().length? "":"前後不能有空格":"請輸入生日");
-				$("#error5").text($("#phone").val().trim()? $("#phone").val().length==$("#phone").val().trim().length? $("#phone").val().trim().length>20?"須20字以內":"":"前後不能有空格":"請輸入手機");	
-				return false;
-			}
-			$("#userInfo").submit();
+			if(!$("#account").val().trim() || $("#account").val().length !==$("#account").val().trim().length || $("#account").val().trim().length>20
+					|| !$("#pass").val().trim() || $("#pass").val().length !==$("#pass").val().trim().length || $("#pass").val().trim().length>20 || $("#pass").val().trim().length<8
+					|| !$("#name").val().trim() || $("#name").val().length !==$("#name").val().trim().length || $("#name").val().trim().length>20
+					|| !$("#birth").val().trim() || $("#birth").val().length !==$("#birth").val().trim().length || $("#birth").val().trim().length>20
+					|| !$("#phone").val().trim() || $("#phone").val().length !==$("#phone").val().trim().length || $("#phone").val().trim().length>20)
+					{
+						$("#error1").text($("#account").val().trim()? $("#account").val().length==$("#account").val().trim().length? $("#account").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入帳號");
+						$("#error2").text($("#pass").val().trim()? $("#pass").val().length==$("#pass").val().trim().length? $("#pass").val().trim().length<21? $("#pass").val().trim().length>7? "":"請輸入8碼以上":"須20字以內":"前後不能有空格":"請輸入密碼");
+						$("#error3").text($("#name").val().trim()? $("#name").val().length==$("#name").val().trim().length? $("#name").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入姓名");
+						$("#error4").text($("#birth").val().trim()? $("#birth").val().length==$("#birth").val().trim().length? $("#birth").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入生日");
+						$("#error5").text($("#phone").val().trim()? $("#phone").val().length==$("#phone").val().trim().length? $("#phone").val().trim().length<21? "":"須20字以內":"前後不能有空格":"請輸入手機");	
+						return false;
+					}
+					$("#userInfo").submit();
 		});
 		
 		$("#back").click(function(){
@@ -50,17 +103,17 @@ span, #msg{font-size:20px;color:red;}
 </script>
 </head>
 <body>
-<header><b>會員註冊</b></header>
-<div>
+<header>會員註冊</header>
+<div class="center">
 	<form action="RegisterAndUpdate" method="post" id="userInfo">
-		帳號: <input type="text" id="account" name="account"><span id="error1"></span><br>
-		密碼: <input type="text" id="pass" name="pass"><span id="error2"></span><br>
-		姓名: <input type="text" id="name" name="name"><span id="error3"></span><br>
-		生日: <input type="text" id="birth" name="birth"><span id="error4"></span><br>
-		手機: <input type="text" id="phone" name="phone"><span id="error5"></span><br>
+		帳號: <input type="text" id="account" name="account"><br><span id="error1"></span><br>
+		密碼: <input type="text" id="pass" name="pass"><br><span id="error2"></span><br>
+		姓名: <input type="text" id="name" name="name"><br><span id="error3"></span><br>
+		生日: <input type="text" id="birth" name="birth"><br><span id="error4"></span><br>
+		手機: <input type="text" id="phone" name="phone"><br><span id="error5"></span><br>
 		<input type="hidden" name="action" value="add">
 	</form>	
-	<button id="confirm">確認</button>&nbsp;<button id="back">返回</button>
+	<button id="confirm" class="btn">確認</button><button id="back" class="btn">返回</button>
 	<div id=msg>${requestScope.result}</div>
 </div>
 </body>
