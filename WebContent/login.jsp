@@ -75,11 +75,12 @@ header{
 		$("#register").click(function(){
 			window.location.href="register.jsp";
 		});
+		$("#indexbutton").load("indexbutton.html");
 	});	
 </script>
 </head>
 <body>
-<header>會員登入</header>
+<header><span id="indexbutton"></span>會員登入</header>
 	<div class="center">
 		<form action="LoginAndLogout" method="post" onsubmit="return checkForm()">
 			帳號 : <input type="text" name="account" id="account"><br><span id="error1"></span><br>

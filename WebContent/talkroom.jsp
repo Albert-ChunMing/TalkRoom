@@ -184,7 +184,7 @@ header{
 </head>
 <body>
 	<div class="wrapper">
-		<header>!!進擊的鄉民!!</header>
+		<header><span id="indexbutton"></span>!!進擊的鄉民!!</header>
 		<div id="messages" class="content"></div>
 		<a id="bottom" ></a>
 	</div>	
@@ -214,8 +214,8 @@ header{
 	<script type="text/javascript">
 
 	window.onload=function(){
+		$("#indexbutton").load("indexbutton.html");
 		var name=document.getElementById("name");
-
 		var logout=document.getElementById("logout");
 		logout.disabled=true;
 		var info=document.getElementById("info");

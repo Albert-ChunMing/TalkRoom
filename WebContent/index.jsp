@@ -84,7 +84,7 @@ header{
 }
 a{text-decoration: none}
 @media screen and (max-width:1050px) {
-	.select{text-align:center;display:block;}
+	.select{text-align:center;}
 
 }
 </style>
@@ -114,12 +114,12 @@ a{text-decoration: none}
 			$("#update").show();
 			$("#logout").show();
 		};		
-		
+		$("#indexbutton").load("indexbutton.html");
 	});
 </script>
 </head>
 <body>
-<header>進擊的聊天室</header>
+<header><span id="indexbutton"></span>進擊的聊天室</header>
 	<div class="toRight">
 		<span id="welcome">${sessionScope.userInfo.username}</span>&nbsp;
 		<input type="button" id="login" value="登入" class="btn">
