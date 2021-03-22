@@ -50,6 +50,7 @@ header{
     text-align: center;
 }
 .talkroom:hover{
+	background-color:white;
 	cursor:pointer;
 }
 .roomName{
@@ -76,6 +77,7 @@ header{
 .btn:hover{
 	background-color:#fcf3e9;
 	color:#a52603;
+	cursor:pointer;
 }
 .img{
 	width:240px;

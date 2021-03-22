@@ -116,8 +116,15 @@ header{
 	width:25px;
 	height:25px;
 }
+.div1 .img{
+	border:#fcf3e9 2px solid;
+	margin-right:5px;
+}
 .div1 .img:hover{
 	cursor:pointer;
+	border:#a52603 2px solid;
+	background-color:#a52603;
+	border-radius: 5px;
 }
 .btn{
 	border:#a52603 2px solid;
@@ -159,9 +166,18 @@ header{
 	border-radius: 5px;
 	padding:3px;
 }
+.robot:hover{
+	background-color:white;
+    color: #0068d2;
+    cursor:pointer;
+}
 #robot{
 	height:20px;
 	width:20px;
+}
+span{
+	font-weight: bold;
+	color:#1000ad;
 }
 @media screen and (max-width:1050px) {
 	/*當使用者使用螢幕 且螢幕寬度不超過1050px時 套用大括號內的CSS設定*/
@@ -184,24 +200,24 @@ header{
 </head>
 <body>
 	<div class="wrapper">
-		<header><%@ include file="indexbutton.html" %>!!進擊的鄉民!!</header>
+		<header><%@ include file="indexbutton.html" %>!進擊的鄉民!</header>
 		<div id="messages" class="content"></div>
 		<a id="bottom" ></a>
 	</div>	
 	<footer class="footer">
 		<div class="div1">
-			<img src="images/thumbs.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/in-love.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/laughing.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/shocked.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/sad.png"  alt="No images" class='img'/>&nbsp;
-			<img src="images/angry.png"  alt="No images" class='img'/>&nbsp;&nbsp;
+			<img src="images/thumbs.png"  alt="No images" class='img'/>
+			<img src="images/in-love.png"  alt="No images" class='img'/>
+			<img src="images/laughing.png"  alt="No images" class='img'/>
+			<img src="images/shocked.png"  alt="No images" class='img'/>
+			<img src="images/sad.png"  alt="No images" class='img'/>
+			<img src="images/angry.png"  alt="No images" class='img'/>
 			<label class="btn">
 				<input type="file" id="file" accept="image/*" style="display:none;"/>
 				<i class="fa fa-photo"></i> 傳圖<!-- 文字 "傳圖" 左邊的 HTML 碼是 Font Awesome 對應的圖示  要先引用CDN 連結-->
 			</label>&nbsp;
 			<input type="button" value="送出" id="send" class="btn"/>&nbsp;
-			<input type="checkbox" id="robot"><label for="robot" class="robot">對話機器人</label>
+			<input type="checkbox" id="robot"><label for="robot" class="robot">系統對話</label>
 		</div>
 		<div id="input" contenteditable="true" ></div>
 		<div class="div2">		
@@ -240,7 +256,7 @@ header{
 						name.disabled=true;
 						
 						logout.disabled=false;
-						info.innerHTML="<b>進入聊天室</b>";
+						info.innerHTML="進入聊天室";
 						//傳送登入成功的資訊給聊天室
 						var loginInfo={username:"系統", message:name.value+ " 進入聊天室"};
 						webSocket.send(JSON.stringify(loginInfo));						
@@ -251,7 +267,7 @@ header{
 	    			 	isConnect=false;
 	    				name.disabled=false;
 	    				logout.disabled=true;
-	    				info.innerHTML="<b>離開聊天室</b>";
+	    				info.innerHTML="離開聊天室";
 	    				number.innerHTML="";						
 	 		    	}
 
@@ -291,7 +307,7 @@ header{
 							//訊息來自系統時
 							}else if(obj.username==="系統"){
 								messages.innerHTML+="<div class='center'><b>"+obj.message+"</b></div>";
-								number.innerHTML="<b>"+obj.guestNumbers+"</b>";
+								number.innerHTML=obj.guestNumbers;
 								guestnames=obj.guestNames;
 								/*
 								以下為顯示線上使用者有誰  但功能有缺陷  只能顯示登入之後才出現的使用者 
@@ -334,7 +350,7 @@ header{
 						}							
 				 	}	    		 
 		    }else{
-			    info.innerHTML="<b>請更改名稱</b>";
+			    info.innerHTML="請更改名稱";
 			}
 	    
 	  	//點擊離開聊天室按鈕
@@ -360,7 +376,7 @@ header{
 					input.innerHTML="";//送出訊息後清空輸入欄
 				}								
 			}else{
-				info.innerHTML="<b>連線中斷</b>";
+				info.innerHTML="連線中斷";
 				input.innerHTML="";
 			}
 		}
@@ -410,7 +426,7 @@ header{
 				}
 				reader.readAsDataURL(file);//讀取完畢後 會將讀取結果放在result
 			}else{
-				info.innerHTML="<b>連線中斷</b>";				
+				info.innerHTML="連線中斷";				
 			}			
 		})	;
 

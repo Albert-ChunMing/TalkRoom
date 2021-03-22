@@ -40,6 +40,7 @@ header{
 .btn:hover{
 	background-color:#fcf3e9;
 	color:#a52603;
+	cursor:pointer;
 }
 #msg,span{
 	font-size:20px;
@@ -55,6 +56,7 @@ header{
 	height:33px;
 	font-size:25px;
 	margin-top:5px;
+	border-radius: 5px;
 }
 </style>
 <script src='js/jquery.js'></script>

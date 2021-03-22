@@ -41,6 +41,7 @@ header{
 .btn:hover{
 	background-color:#fcf3e9;
 	color:#a52603;
+	cursor:pointer;
 }
 #msg,span{
 	font-size:20px;
@@ -56,6 +57,7 @@ input{
 	height:33px;
 	font-size:25px;
 	margin-top:5px;
+	border-radius: 5px;
 }
 .ui-datepicker {font-size:60%;}
 </style>

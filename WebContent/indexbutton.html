@@ -15,8 +15,16 @@
 	background-color:#fcf3e9;
 }
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".indexbutton").hover(
+				function(){	$(this).attr("src","images/index2.png");},  //滑鼠移進去
+				function(){	$(this).attr("src","images/index.png");}     //滑鼠移出來
+				);
+	});
+</script>
 </head>
 <body>
-	<a href="index.jsp"><img src="images/index.png"  alt="No images" class="indexbutton"/></a>
+	<a href="index.jsp"><img src="images/index.png"  alt="No images" class="indexbutton" /></a>
 </body>
 </html>
