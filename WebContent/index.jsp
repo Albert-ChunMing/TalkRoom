@@ -114,12 +114,11 @@ a{text-decoration: none}
 			$("#update").show();
 			$("#logout").show();
 		};		
-		$("#indexbutton").load("indexbutton.html");
 	});
 </script>
 </head>
 <body>
-<header><span id="indexbutton"></span>進擊的聊天室</header>
+<header><%@ include file="indexbutton.html" %>進擊的聊天室</header>
 	<div class="toRight">
 		<span id="welcome">${sessionScope.userInfo.username}</span>&nbsp;
 		<input type="button" id="login" value="登入" class="btn">

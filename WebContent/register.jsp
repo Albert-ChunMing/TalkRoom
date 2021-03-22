@@ -98,12 +98,11 @@ input{
 			yearRange:"c-30:c+30",//可選擇的年份範圍 c為當前年度
 			defaultDate:"2000-01-01",//月曆一開始的日期  原本預設是今日
 		});
-		$("#indexbutton").load("indexbutton.html");
 	});
 </script>
 </head>
 <body>
-<header><span id="indexbutton"></span>會員註冊</header>
+<header><%@ include file="indexbutton.html" %>會員註冊</header>
 <div class="center">
 	<form action="RegisterAndUpdate" method="post" id="userInfo">
 		帳號: <input type="text" id="account" name="account"><br><span id="error1"></span><br>
